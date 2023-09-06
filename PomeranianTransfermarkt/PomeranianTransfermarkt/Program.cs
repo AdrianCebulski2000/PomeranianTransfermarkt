@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using PomeranianTransfermarkt.Entities;
+
 namespace PomeranianTransfermarkt
 {
     public class Program
@@ -5,9 +8,14 @@ namespace PomeranianTransfermarkt
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddDbContext<ApplicationDbContext>
+                (
+                    option => option.UseSqlServer(builder.Configuration.GetConnectionString("PomeranianTransfermarktConnectionString"))
+                );
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<ApplicationDbContext>();
 
             var app = builder.Build();
 

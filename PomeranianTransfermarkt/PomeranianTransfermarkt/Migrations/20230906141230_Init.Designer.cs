@@ -11,8 +11,8 @@ using PomeranianTransfermarkt.Entities;
 namespace PomeranianTransfermarkt.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230906131805_init")]
-    partial class init
+    [Migration("20230906141230_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

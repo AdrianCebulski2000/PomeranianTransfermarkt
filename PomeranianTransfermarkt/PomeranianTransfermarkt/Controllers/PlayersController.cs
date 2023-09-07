@@ -35,7 +35,7 @@ namespace PomeranianTransfermarkt.Controllers
             }
 
             var players = await _context.Players
-                .FirstOrDefaultAsync(m => m.PlayerId == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (players == null)
             {
                 return NotFound();
@@ -55,7 +55,7 @@ namespace PomeranianTransfermarkt.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PlayerId,Name,Surname,Age,Position,MarketValue,Nationality")] Players players)
+        public async Task<IActionResult> Create([Bind("Id,Name,Surname,Age,Position,MarketValue,Nationality")] Players players)
         {
             if (ModelState.IsValid)
             {
@@ -87,9 +87,9 @@ namespace PomeranianTransfermarkt.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PlayerId,Name,Surname,Age,Position,MarketValue,Nationality")] Players players)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Surname,Age,Position,MarketValue,Nationality")] Players players)
         {
-            if (id != players.PlayerId)
+            if (id != players.Id)
             {
                 return NotFound();
             }
@@ -103,7 +103,7 @@ namespace PomeranianTransfermarkt.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PlayersExists(players.PlayerId))
+                    if (!PlayersExists(players.Id))
                     {
                         return NotFound();
                     }
@@ -126,7 +126,7 @@ namespace PomeranianTransfermarkt.Controllers
             }
 
             var players = await _context.Players
-                .FirstOrDefaultAsync(m => m.PlayerId == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (players == null)
             {
                 return NotFound();
@@ -156,7 +156,7 @@ namespace PomeranianTransfermarkt.Controllers
 
         private bool PlayersExists(int id)
         {
-          return (_context.Players?.Any(e => e.PlayerId == id)).GetValueOrDefault();
+          return (_context.Players?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

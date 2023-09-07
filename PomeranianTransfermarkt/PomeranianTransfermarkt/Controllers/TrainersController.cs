@@ -35,7 +35,7 @@ namespace PomeranianTransfermarkt.Controllers
             }
 
             var trainers = await _context.Trainers
-                .FirstOrDefaultAsync(m => m.TrainerId == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (trainers == null)
             {
                 return NotFound();
@@ -55,7 +55,7 @@ namespace PomeranianTransfermarkt.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TrainerId,Name,Surname,Age,Nationality")] Trainers trainers)
+        public async Task<IActionResult> Create([Bind("Id,Name,Surname,Age,Nationality")] Trainers trainers)
         {
             if (ModelState.IsValid)
             {
@@ -87,9 +87,9 @@ namespace PomeranianTransfermarkt.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TrainerId,Name,Surname,Age,Nationality")] Trainers trainers)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Surname,Age,Nationality")] Trainers trainers)
         {
-            if (id != trainers.TrainerId)
+            if (id != trainers.Id)
             {
                 return NotFound();
             }
@@ -103,7 +103,7 @@ namespace PomeranianTransfermarkt.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TrainersExists(trainers.TrainerId))
+                    if (!TrainersExists(trainers.Id))
                     {
                         return NotFound();
                     }
@@ -126,7 +126,7 @@ namespace PomeranianTransfermarkt.Controllers
             }
 
             var trainers = await _context.Trainers
-                .FirstOrDefaultAsync(m => m.TrainerId == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (trainers == null)
             {
                 return NotFound();
@@ -156,7 +156,7 @@ namespace PomeranianTransfermarkt.Controllers
 
         private bool TrainersExists(int id)
         {
-          return (_context.Trainers?.Any(e => e.TrainerId == id)).GetValueOrDefault();
+          return (_context.Trainers?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

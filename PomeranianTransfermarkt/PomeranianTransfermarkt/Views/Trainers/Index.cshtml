@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PomeranianTransfermarkt.Entities.Players>
+﻿@model IEnumerable<PomeranianTransfermarkt.Entities.Trainers>
 
 @{
     ViewData["Title"] = "Index";
@@ -22,12 +22,6 @@
                 @Html.DisplayNameFor(model => model.Age)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Position)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MarketValue)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Nationality)
             </th>
             <th></th>
@@ -46,18 +40,12 @@
                 @Html.DisplayFor(modelItem => item.Age)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Position)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MarketValue)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Nationality)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.PlayerId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PlayerId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PlayerId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.TrainerId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.TrainerId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.TrainerId">Delete</a>
             </td>
         </tr>
 }

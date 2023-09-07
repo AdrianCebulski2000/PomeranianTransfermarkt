@@ -3,18 +3,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PomeranianTransfermarkt.Entities
 {
-    public class Players
+    public class Trainers
     {
         [Key]
-        public int PlayerId { get; set; }
+        public int TrainerId { get; set; }
         public string Name { get; set; } = default!;
         public string Surname { get; set; } = default!;
         public int Age { get; set; } = default!;
-        public string Position { get; set; } = default!;
-        public double MarketValue { get; set; } = default!;
         public string Nationality { get; set; } = default!;
-        public List<Clubs> Clubs { get; set; } = default!;
-        public List<Trainers> Trainers { get; set; } = default!;
-        
+
+        public List<Clubs> Clubs{ get; set; } = default!;
+        public List<Players> Players { get; set; } = default!;
     }
 }

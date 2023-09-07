@@ -9,87 +9,87 @@ using PomeranianTransfermarkt.Entities;
 
 namespace PomeranianTransfermarkt.Controllers
 {
-    public class PlayersController : Controller
+    public class TrainersController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public PlayersController(ApplicationDbContext context)
+        public TrainersController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Players
+        // GET: Trainers
         public async Task<IActionResult> Index()
         {
-              return _context.Players != null ? 
-                          View(await _context.Players.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Players'  is null.");
+              return _context.Trainers != null ? 
+                          View(await _context.Trainers.ToListAsync()) :
+                          Problem("Entity set 'ApplicationDbContext.Trainers'  is null.");
         }
 
-        // GET: Players/Details/5
+        // GET: Trainers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Players == null)
+            if (id == null || _context.Trainers == null)
             {
                 return NotFound();
             }
 
-            var players = await _context.Players
-                .FirstOrDefaultAsync(m => m.PlayerId == id);
-            if (players == null)
+            var trainers = await _context.Trainers
+                .FirstOrDefaultAsync(m => m.TrainerId == id);
+            if (trainers == null)
             {
                 return NotFound();
             }
 
-            return View(players);
+            return View(trainers);
         }
 
-        // GET: Players/Create
+        // GET: Trainers/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Players/Create
+        // POST: Trainers/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PlayerId,Name,Surname,Age,Position,MarketValue,Nationality")] Players players)
+        public async Task<IActionResult> Create([Bind("TrainerId,Name,Surname,Age,Nationality")] Trainers trainers)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(players);
+                _context.Add(trainers);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(players);
+            return View(trainers);
         }
 
-        // GET: Players/Edit/5
+        // GET: Trainers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Players == null)
+            if (id == null || _context.Trainers == null)
             {
                 return NotFound();
             }
 
-            var players = await _context.Players.FindAsync(id);
-            if (players == null)
+            var trainers = await _context.Trainers.FindAsync(id);
+            if (trainers == null)
             {
                 return NotFound();
             }
-            return View(players);
+            return View(trainers);
         }
 
-        // POST: Players/Edit/5
+        // POST: Trainers/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PlayerId,Name,Surname,Age,Position,MarketValue,Nationality")] Players players)
+        public async Task<IActionResult> Edit(int id, [Bind("TrainerId,Name,Surname,Age,Nationality")] Trainers trainers)
         {
-            if (id != players.PlayerId)
+            if (id != trainers.TrainerId)
             {
                 return NotFound();
             }
@@ -98,12 +98,12 @@ namespace PomeranianTransfermarkt.Controllers
             {
                 try
                 {
-                    _context.Update(players);
+                    _context.Update(trainers);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PlayersExists(players.PlayerId))
+                    if (!TrainersExists(trainers.TrainerId))
                     {
                         return NotFound();
                     }
@@ -114,49 +114,49 @@ namespace PomeranianTransfermarkt.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(players);
+            return View(trainers);
         }
 
-        // GET: Players/Delete/5
+        // GET: Trainers/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Players == null)
+            if (id == null || _context.Trainers == null)
             {
                 return NotFound();
             }
 
-            var players = await _context.Players
-                .FirstOrDefaultAsync(m => m.PlayerId == id);
-            if (players == null)
+            var trainers = await _context.Trainers
+                .FirstOrDefaultAsync(m => m.TrainerId == id);
+            if (trainers == null)
             {
                 return NotFound();
             }
 
-            return View(players);
+            return View(trainers);
         }
 
-        // POST: Players/Delete/5
+        // POST: Trainers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Players == null)
+            if (_context.Trainers == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.Players'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.Trainers'  is null.");
             }
-            var players = await _context.Players.FindAsync(id);
-            if (players != null)
+            var trainers = await _context.Trainers.FindAsync(id);
+            if (trainers != null)
             {
-                _context.Players.Remove(players);
+                _context.Trainers.Remove(trainers);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool PlayersExists(int id)
+        private bool TrainersExists(int id)
         {
-          return (_context.Players?.Any(e => e.PlayerId == id)).GetValueOrDefault();
+          return (_context.Trainers?.Any(e => e.TrainerId == id)).GetValueOrDefault();
         }
     }
 }

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using PomeranianTransfermarkt.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace PomeranianTransfermarkt
 {
@@ -12,6 +13,8 @@ namespace PomeranianTransfermarkt
                 (
                     option => option.UseSqlServer(builder.Configuration.GetConnectionString("PomeranianTransfermarktConnectionString"))
                 );
+
+            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
@@ -31,7 +34,7 @@ namespace PomeranianTransfermarkt
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.MapRazorPages();
             app.UseAuthorization();
 
             app.MapControllerRoute(

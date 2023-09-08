@@ -19,7 +19,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Image\" />
     <Folder Include="Migrations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\background.jpg" />
   </ItemGroup>
 
 </Project>
